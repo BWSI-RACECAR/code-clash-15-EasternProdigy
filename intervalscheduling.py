@@ -41,12 +41,14 @@ class Solution:
             #return type: list of int tuples
             
             #TODO: Write code below to return an int tuples list with the solution to the prompt.
-            intervals = intervals.sort()
-            events = []
-            for i in range(len(intervals) - 1):
-                if intervals[i][1] == intervals[i + 1][0]:
-                    events.append(intervals[i])
-                    events.append(intervals[i+1])
+        intervals.sort(key=lambda x: x[1])
+        ans = [intervals[0]]
+
+        for i in range(1, len(intervals)):
+            if intervals[i][0] >= ans[-1][1]:
+                ans.append(intervals[i])
+
+        return ans
 
 
 
